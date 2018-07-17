@@ -21,4 +21,4 @@ New Feed Selection
 
 ## How to Run this Application
 
-To start the tests, load the index.html file in your browser.
+To start the tests, download/clone clone [this repository](https://github.com/pfrey/feedreader), and open index.html in a browser. 
