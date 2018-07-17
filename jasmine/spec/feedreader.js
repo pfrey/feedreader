@@ -71,7 +71,7 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
         it('menu visibility changes when menu icon is clicked', function() {
-            var menuIcon = $('.menu-icon-link');
+            let menuIcon = $('.menu-icon-link');
 
             menuIcon.click();
             expect(body.attr('class')).not.toEqual('menu-hidden');
@@ -91,15 +91,14 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-        var entryCount = null;
+        let entryCount = 0;
 
         beforeEach(function(done) {
             loadFeed(0, done);
-            entryCount = document.querySelectorAll('.entries').length;
-            done();
         });
 
         it('loadFeed has completed and has data', function() {
+            entryCount = document.querySelectorAll('.entry').length;
             expect(entryCount).not.toBe(0);
         });
 
@@ -112,6 +111,22 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        let feed0, feed1;
+
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                feed0 = document.querySelector('.feed').innerHTML;
+                done();
+            });
+            loadFeed(1, function() {
+                feed1 = document.querySelector('.feed').innerHTML;
+                done();
+            });
+        });
+
+        it('loadFeed has loaded a new feed and has new data', function() {
+            expect(feed0).not.toEqual(feed1);
+        });
 
     });
 }());
