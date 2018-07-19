@@ -32,7 +32,8 @@ $(function() {
          */
          it('urls are defined and not empty', function() {
             for(let item of allFeeds) {
-                expect(item.url).toBeTruthy();
+		expect(item.url).toBeDefined();
+                expect(item.url.length).not.toBe(0);
             };
          });
 
@@ -42,7 +43,8 @@ $(function() {
          */
          it('names are defined and not empty', function() {
             for(let item of allFeeds) {
-                expect(item.name).toBeTruthy();
+               expect(item.name).toBeDefined();
+               expect(item.name.length).not.toBe(0);
             };
          });
     });
